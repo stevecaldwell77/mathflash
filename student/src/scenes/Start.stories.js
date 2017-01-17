@@ -1,27 +1,27 @@
 import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
-import { configureStore, StoryProvider, loginJohnDoe, addPrevCircuit } from '../util/stories';
-import Start from './Start';
+import { stubTopBarContainer } from '../stubs';
 
 import "semantic-ui-css/semantic.css";
 
+stubTopBarContainer();
+const Start = require('./Start').default;
+
 const onStart = action('start');
 
-const storeBegin = configureStore(loginJohnDoe, {});
-const storePrevious = configureStore(addPrevCircuit, loginJohnDoe, {});
-const storeWaiting = configureStore(addPrevCircuit, loginJohnDoe, {
-    start: {
-        circuitRequested: true,
-    },
-});
-
-const buildComponent = (store) => (
-    <StoryProvider store={store}>
-        <Start onStart={onStart} />
-    </StoryProvider>
-);
+const prevCircuit = {
+    startTime: 1484599405,
+    endTime: 1484599405 + 60000,
+    numCompleted: 24,
+};
 
 storiesOf('Start', module)
-    .add('no previous circuit', () => buildComponent(storeBegin))
-    .add('has previous circuit', () => buildComponent(storePrevious))
-    .add('circuit requested', () => buildComponent(storeWaiting));
+    .add('no previous circuit', () => (
+        <Start onStart={onStart} />
+    ))
+    .add('has previous circuit', () => (
+        <Start onStart={onStart} prevCircuit={prevCircuit} />
+    ))
+    .add('circuit requested', () => (
+        <Start onStart={onStart} prevCircuit={prevCircuit} circuitRequested={true} />
+    ));

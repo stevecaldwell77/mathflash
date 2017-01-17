@@ -1,18 +1,5 @@
 import React from 'react';
-import { connect } from '../util/redux';
 import { Grid, Button, Header, Icon, Segment } from "semantic-ui-react";
-
-const logout = () => {};
-
-const currentStudent = state => state.entities.students[state.session.currentStudentId];
-
-const mapState = state => ({
-    currentStudentName: currentStudent(state).studentName,
-});
-
-const actions = {
-    onLogoutClick: logout,
-};
 
 const TopBar = ({ currentStudentName, onLogoutClick }) => (
     <Segment inverted>
@@ -37,7 +24,4 @@ TopBar.propTypes = {
     onLogoutClick: React.PropTypes.func.isRequired,
 };
 
-export default connect(
-    mapState,
-    actions,
-)(TopBar);
+export default TopBar;
