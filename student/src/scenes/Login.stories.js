@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
-import { StoryProvider, loadStudents } from '../util/stories';
+import { configureStore, StoryProvider, loadStudents } from '../util/stories';
 import Login from './Login';
 
 import "semantic-ui-css/semantic.css";
@@ -11,14 +11,17 @@ const studentsLoaded = {
     },
 };
 
+const storeFetching = configureStore({});
+const storeFetched = configureStore(loadStudents, {});
+
 storiesOf('Login', module)
     .add('fetching students', () => (
-        <StoryProvider state={{}}>
+        <StoryProvider store={storeFetching}>
             <Login/>
         </StoryProvider>
     ))
     .add('students fetched', () => (
-        <StoryProvider state={loadStudents({})}>
+        <StoryProvider store={storeFetched}>
             <Login/>
         </StoryProvider>
     ));

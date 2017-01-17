@@ -1,35 +1,33 @@
 import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
-import { StoryProvider, loginJohnDoe, addPrevCircuit } from '../util/stories';
+import { configureStore, StoryProvider, loginJohnDoe, addPrevCircuit } from '../util/stories';
 import Start from './Start';
 
 import "semantic-ui-css/semantic.css";
 
 const onStart = action('start');
 
+const storeBegin = configureStore(loginJohnDoe, {});
+const storePrevious = configureStore(addPrevCircuit, loginJohnDoe, {});
+const storeWaiting = configureStore(addPrevCircuit, loginJohnDoe, {
+    start: {
+        circuitRequested: true,
+    },
+});
+
 storiesOf('Start', module)
     .add('no previous circuit', () => (
-        <StoryProvider state={loginJohnDoe({})}>
+        <StoryProvider store={storeBegin}>
             <Start onStart={onStart} />
         </StoryProvider>
     ))
-    .add('has previous circuit', () => {
-        let state = {};
-        state = loginJohnDoe(state);
-        state = addPrevCircuit(state);
-        return <StoryProvider state={state}>
+    .add('has previous circuit', () => (
+        <StoryProvider store={storePrevious}>
             <Start onStart={onStart} />
         </StoryProvider>
-    })
-    .add('circuit requested', () => {
-        let state = {
-            start: {
-                circuitRequested: true,
-            },
-        };
-        state = loginJohnDoe(state);
-        state = addPrevCircuit(state);
-        return <StoryProvider state={state}>
+    ))
+    .add('circuit requested', () => (
+        <StoryProvider store={storeWaiting}>
             <Start onStart={onStart} />
         </StoryProvider>
-    });
+    ));
