@@ -6,8 +6,6 @@ const options = (students) => students.map(student => ({
     value: student.id,
 }));
 
-const onChange = (e) => console.log(e.target);
-
 const LoginForm = ({ students = [], onSubmit, loading, error }) => (
     <Container>
         <Label>Student Login</Label>
