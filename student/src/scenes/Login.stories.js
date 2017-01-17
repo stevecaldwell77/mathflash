@@ -1,8 +1,8 @@
 import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
-import { stubLoginForm } from '../stubs';
+import { stubLoginFormContainer } from '../stubs';
 
-stubLoginForm();
+stubLoginFormContainer();
 const Login = require('./Login').default;
 
 import "semantic-ui-css/semantic.css";

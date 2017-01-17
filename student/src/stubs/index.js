@@ -7,7 +7,7 @@ export const stubTopBarContainer = () => {
     stub(Container, Stub);
 };
 
-export const stubLoginForm = () => {
+export const stubLoginFormContainer = () => {
     setStubbingMode(true);
     const Container = require('../scenes/Login/LoginFormContainer').default;
     const Stub = require('../stubs/LoginFormContainer').default;
