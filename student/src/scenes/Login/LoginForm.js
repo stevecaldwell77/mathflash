@@ -1,12 +1,41 @@
 import React from 'react';
+import { toPairs } from 'lodash';
+import { connect } from '../../util/redux';
 import { Dropdown, Label, Container } from "semantic-ui-react";
+
+const mapState = (state) => {
+    let students = [];
+    if (state.entities && state.entities.students) {
+        const studentEntities = state.entities.students;
+        students = toPairs(studentEntities).map(([id, obj]) => ({
+            id,
+            name: obj.studentName,
+        }));
+    }
+
+    let loading;
+    if (state.login) {
+        loading = state.login.formSubmitted;
+    }
+
+    let errorMsg;
+    if (state.login) {
+        errorMsg = state.login.errorMsg;
+    }
+
+    return {
+        students,
+        loading,
+        errorMsg,
+    };
+};
 
 const options = (students) => students.map(student => ({
     text: student.name,
     value: student.id,
 }));
 
-const LoginForm = ({ students = [], onSubmit, loading, error }) => (
+const LoginForm = ({ students = [], onSubmit, loading, errorMsg }) => (
     <Container>
         <Label>Student Login</Label>
         <Dropdown
@@ -17,10 +46,10 @@ const LoginForm = ({ students = [], onSubmit, loading, error }) => (
             placeholder='Choose One'
             onChange={onSubmit}
             disabled={loading}
-            error={error}
+            error={errorMsg && errorMsg.length > 0}
         />
-        { error &&
-            <Label basic color='red' pointing>{error}</Label>
+        { errorMsg &&
+            <Label basic color='red' pointing>{errorMsg}</Label>
         }
     </Container>
 );
@@ -32,4 +61,6 @@ LoginForm.propTypes = {
     errorMsg: React.PropTypes.string,
 };
 
-export default LoginForm;
+export default connect(
+    mapState,
+)(LoginForm);

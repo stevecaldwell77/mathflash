@@ -10,6 +10,29 @@ const configureStore = (initialState) => createStore(
 
 const johnDoeId = 181311;
 
+export const loadStudents = (state = {}) => merge(
+    {},
+    state,
+    {
+        entities: {
+            students: {
+                1: {
+                    studentName: 'Isla',
+                },
+                2: {
+                    studentName: 'Sean',
+                },
+                3: {
+                    studentName: 'Kevin',
+                },
+            }
+        },
+        login: {
+            studentsLoaded: true
+        },
+    },
+);
+
 export const loginJohnDoe = (state = {}) => merge(
     {},
     state,
