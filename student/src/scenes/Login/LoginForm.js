@@ -3,6 +3,8 @@ import { toPairs } from 'lodash';
 import { connect } from '../../util/redux';
 import { Dropdown, Label, Container } from "semantic-ui-react";
 
+const login = () => {};
+
 const mapState = (state) => {
     let students = [];
     if (state.entities && state.entities.students) {
@@ -28,6 +30,10 @@ const mapState = (state) => {
         loading,
         errorMsg,
     };
+};
+
+const actions = {
+    onSubmit: login,
 };
 
 const options = (students) => students.map(student => ({
@@ -63,4 +69,5 @@ LoginForm.propTypes = {
 
 export default connect(
     mapState,
+    actions,
 )(LoginForm);
