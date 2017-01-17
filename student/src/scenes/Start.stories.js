@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
-import { StoryProvider, loginJohnDoe } from '../util/stories';
+import { StoryProvider, loginJohnDoe, addPrevCircuit } from '../util/stories';
 import Start from './Start';
 
 import "semantic-ui-css/semantic.css";
@@ -14,18 +14,9 @@ storiesOf('Start', module)
         </StoryProvider>
     ))
     .add('has previous circuit', () => {
-        let state = {
-            entities: {
-                circuits: {
-                    1: {
-                        startTime: 1484599405,
-                        endTime: 1484599405 + 60000,
-                        numCompleted: 24,
-                    },
-                },
-            }
-        };
+        let state = {};
         state = loginJohnDoe(state);
+        state = addPrevCircuit(state);
         return <StoryProvider state={state}>
             <Start onStart={onStart} />
         </StoryProvider>
@@ -37,6 +28,7 @@ storiesOf('Start', module)
             },
         };
         state = loginJohnDoe(state);
+        state = addPrevCircuit(state);
         return <StoryProvider state={state}>
             <Start onStart={onStart} />
         </StoryProvider>

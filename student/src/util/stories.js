@@ -33,6 +33,22 @@ export const loadStudents = (state = {}) => merge(
     },
 );
 
+export const addPrevCircuit = (state = {}) => merge(
+    {},
+    state,
+    {
+        entities: {
+            circuits: {
+                1: {
+                    startTime: 1484599405,
+                    endTime: 1484599405 + 60000,
+                    numCompleted: 24,
+                },
+            },
+        }
+    },
+);
+
 export const loginJohnDoe = (state = {}) => merge(
     {},
     state,
