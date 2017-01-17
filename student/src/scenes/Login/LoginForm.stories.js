@@ -1,31 +1,24 @@
 import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
-import { configureStore, StoryProvider, loadStudents } from '../../util/stories';
 import LoginForm from './LoginForm';
 
 import "semantic-ui-css/semantic.css";
 
+const students = [
+    { id: 1, name: 'Isla' },
+    { id: 2, name: 'Sean' },
+    { id: 3, name: 'Kevin' },
+];
+
 const onSubmit = action('submit');
 
-const storeReady = configureStore(loadStudents, {});
-const storeLoading = configureStore(loadStudents, {
-    login: {
-        formSubmitted: true,
-    }
-});
-const storeError = configureStore(loadStudents, {
-    login: {
-        errorMsg: 'Unknown Error Occurred',
-    }
-});
-
-const buildComponent = (store) => (
-    <StoryProvider store={store}>
-        <LoginForm onSubmit={onSubmit}/>
-    </StoryProvider>
-);
-
 storiesOf('LoginForm', module)
-    .add('ready', () => buildComponent(storeReady))
-    .add('loading', () => buildComponent(storeLoading))
-    .add('error', () => buildComponent(storeError));
+    .add('ready', () => (
+        <LoginForm students={students} onSubmit={onSubmit}/>
+    ))
+    .add('loading', () => (
+        <LoginForm students={students} onSubmit={onSubmit} loading={true}/>
+    ))
+    .add('error', () => (
+        <LoginForm students={students} onSubmit={onSubmit} errorMsg='Unknown Error Occurred'/>
+    ));

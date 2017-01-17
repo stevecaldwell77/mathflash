@@ -1,11 +1,6 @@
 import React from 'react';
-import { connect } from '../util/redux';
 import { Container, Header, Icon, Dimmer, Loader, Grid } from "semantic-ui-react";
-import LoginForm from './Login/LoginForm';
-
-const mapState = ({ login = {} }) => ({
-    studentsLoaded: login.studentsLoaded,
-});
+import LoginFormContainer from './Login/LoginFormContainer';
 
 const Login = ({ studentsLoaded }) => (
     <Container>
@@ -18,7 +13,7 @@ const Login = ({ studentsLoaded }) => (
         { studentsLoaded ? (
             <Grid centered columns={2}>
                 <Grid.Column>
-                    <LoginForm />
+                    <LoginFormContainer />
                 </Grid.Column>
             </Grid>
         ) : (
@@ -33,6 +28,4 @@ Login.propTypes = {
     studentsLoaded: React.PropTypes.bool,
 };
 
-export default connect(
-    mapState,
-)(Login);
+export default Login;
