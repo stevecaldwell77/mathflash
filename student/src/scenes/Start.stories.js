@@ -7,25 +7,37 @@ import "semantic-ui-css/semantic.css";
 
 const onStart = action('start');
 
-const prevCircuit = {
-    startTime: 1484599405,
-    endTime: 1484599405 + 60000,
-    numCompleted: 24,
-};
-
 storiesOf('Start', module)
     .add('no previous circuit', () => (
         <StoryProvider state={loginJohnDoe({})}>
             <Start onStart={onStart} />
         </StoryProvider>
     ))
-    .add('has previous circuit', () => (
-        <StoryProvider state={loginJohnDoe({})}>
-            <Start onStart={onStart} prevCircuit={prevCircuit} />
+    .add('has previous circuit', () => {
+        let state = {
+            entities: {
+                circuits: {
+                    1: {
+                        startTime: 1484599405,
+                        endTime: 1484599405 + 60000,
+                        numCompleted: 24,
+                    },
+                },
+            }
+        };
+        state = loginJohnDoe(state);
+        return <StoryProvider state={state}>
+            <Start onStart={onStart} />
         </StoryProvider>
-    ))
-    .add('circuit requested', () => (
-        <StoryProvider state={loginJohnDoe({})}>
-            <Start onStart={onStart} prevCircuit={prevCircuit} circuitRequested={true} />
+    })
+    .add('circuit requested', () => {
+        let state = {
+            start: {
+                circuitRequested: true,
+            },
+        };
+        state = loginJohnDoe(state);
+        return <StoryProvider state={state}>
+            <Start onStart={onStart} />
         </StoryProvider>
-    ));
+    });

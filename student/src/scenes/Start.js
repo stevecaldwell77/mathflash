@@ -1,9 +1,40 @@
+import { toPairs } from 'lodash';
 import React from 'react';
 import moment from 'moment';
 import 'moment-duration-format';
 import { Container, Button, Segment, Label, Statistic, Dimmer, Loader } from "semantic-ui-react";
+import { connect } from '../util/redux';
 
 import TopBar from '../features/TopBar';
+
+const start = () => {};
+
+const getPrevCircuit = state => {
+    if (!state.entities) return undefined;
+    if (!state.entities.circuits) return undefined;
+    return toPairs(state.entities.circuits).reduce((prev, [id, circuit]) => {
+        if (!prev.endTime) return circuit;
+        if (!circuit.endTime) return prev;
+        if (circuit.startTime > prev.startTime) return circuit;
+        return prev;
+    }, {});
+};
+
+const mapState = (state) => {
+    let circuitRequested;
+    if (state.start) {
+        circuitRequested = state.start.circuitRequested;
+    }
+
+    return {
+        circuitRequested,
+        prevCircuit: getPrevCircuit(state),
+    };
+};
+
+const actions = {
+    onStart: start,
+};
 
 const duration = (start, end) => {
     const numSeconds = parseInt((end - start) / 1000);
@@ -44,4 +75,7 @@ Start.propTypes = {
     prevCircuit: React.PropTypes.object,
 };
 
-export default Start;
+export default connect(
+    mapState,
+    actions,
+)(Start);
