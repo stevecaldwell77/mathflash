@@ -9,9 +9,11 @@ const onLogoutClick = action('logout-click');
 
 const store = configureStore(loginJohnDoe, {});
 
+const buildComponent = (store) => (
+    <StoryProvider store={store}>
+        <TopBar onLogoutClick={onLogoutClick} />
+    </StoryProvider>
+);
+
 storiesOf('TopBar', module)
-    .add('John Doe', () => (
-        <StoryProvider store={store}>
-            <TopBar onLogoutClick={onLogoutClick} />
-        </StoryProvider>
-    ));
+    .add('John Doe', () => buildComponent(store));

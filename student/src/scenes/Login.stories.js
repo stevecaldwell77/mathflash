@@ -14,14 +14,12 @@ const studentsLoaded = {
 const storeFetching = configureStore({});
 const storeFetched = configureStore(loadStudents, {});
 
+const buildComponent = (store) => (
+    <StoryProvider store={store}>
+        <Login/>
+    </StoryProvider>
+);
+
 storiesOf('Login', module)
-    .add('fetching students', () => (
-        <StoryProvider store={storeFetching}>
-            <Login/>
-        </StoryProvider>
-    ))
-    .add('students fetched', () => (
-        <StoryProvider store={storeFetched}>
-            <Login/>
-        </StoryProvider>
-    ));
+    .add('fetching students', () => buildComponent(storeFetching))
+    .add('students fetched', () => buildComponent(storeFetched));

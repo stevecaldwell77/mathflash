@@ -19,19 +19,13 @@ const storeError = configureStore(loadStudents, {
     }
 });
 
+const buildComponent = (store) => (
+    <StoryProvider store={store}>
+        <LoginForm onSubmit={onSubmit}/>
+    </StoryProvider>
+);
+
 storiesOf('LoginForm', module)
-    .add('ready', () => (
-        <StoryProvider store={storeReady}>
-            <LoginForm onSubmit={onSubmit}/>
-        </StoryProvider>
-    ))
-    .add('loading', () => (
-        <StoryProvider store={storeLoading}>
-            <LoginForm onSubmit={onSubmit} />
-        </StoryProvider>
-    ))
-    .add('error', () => (
-        <StoryProvider store={storeError}>
-            <LoginForm onSubmit={onSubmit} />
-        </StoryProvider>
-    ));
+    .add('ready', () => buildComponent(storeReady))
+    .add('loading', () => buildComponent(storeLoading))
+    .add('error', () => buildComponent(storeError));

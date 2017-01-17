@@ -15,19 +15,13 @@ const storeWaiting = configureStore(addPrevCircuit, loginJohnDoe, {
     },
 });
 
+const buildComponent = (store) => (
+    <StoryProvider store={store}>
+        <Start onStart={onStart} />
+    </StoryProvider>
+);
+
 storiesOf('Start', module)
-    .add('no previous circuit', () => (
-        <StoryProvider store={storeBegin}>
-            <Start onStart={onStart} />
-        </StoryProvider>
-    ))
-    .add('has previous circuit', () => (
-        <StoryProvider store={storePrevious}>
-            <Start onStart={onStart} />
-        </StoryProvider>
-    ))
-    .add('circuit requested', () => (
-        <StoryProvider store={storeWaiting}>
-            <Start onStart={onStart} />
-        </StoryProvider>
-    ));
+    .add('no previous circuit', () => buildComponent(storeBegin))
+    .add('has previous circuit', () => buildComponent(storePrevious))
+    .add('circuit requested', () => buildComponent(storeWaiting));
