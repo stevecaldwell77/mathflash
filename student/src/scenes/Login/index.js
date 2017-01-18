@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { toPairs, sortBy } from 'lodash';
 import Component from './Component';
 
 const login = () => {};
 
-const mapState = (state) => {
+export const mapState = (state) => {
     let students = [];
     if (state.entities && state.entities.students) {
         const studentEntities = state.entities.students;
@@ -12,10 +13,11 @@ const mapState = (state) => {
             id,
             name: obj.studentName,
         }));
+        students = sortBy(students, 'name');
     }
 
-    let waiting;
-    if (!students) {
+    let waiting = false;
+    if (students.length === 0) {
         waiting = true;
     } else if (state.login) {
         waiting = state.login.formSubmitted;
