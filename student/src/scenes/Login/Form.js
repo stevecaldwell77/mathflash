@@ -6,17 +6,15 @@ const options = (students) => students.map(student => ({
     value: student.id,
 }));
 
-const LoginForm = ({ students = [], onSubmit, loading, errorMsg }) => (
+const Form = ({ students = [], onStudentChange, errorMsg }) => (
     <Container>
         <Label>Student Login</Label>
         <Dropdown
             fluid
             selection
-            loading={loading}
             options={options(students)}
             placeholder='Choose One'
-            onChange={onSubmit}
-            disabled={loading}
+            onChange={onStudentChange}
             error={errorMsg && errorMsg.length > 0}
         />
         { errorMsg &&
@@ -25,11 +23,10 @@ const LoginForm = ({ students = [], onSubmit, loading, errorMsg }) => (
     </Container>
 );
 
-LoginForm.propTypes = {
+Form.propTypes = {
     students: React.PropTypes.array,
-    onSubmit: React.PropTypes.func.isRequired,
-    loading: React.PropTypes.bool,
     errorMsg: React.PropTypes.string,
+    onStudentChange: React.PropTypes.func.isRequired,
 };
 
-export default LoginForm;
+export default Form;
