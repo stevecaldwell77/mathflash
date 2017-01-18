@@ -2,13 +2,10 @@ import React from 'react';
 import moment from 'moment';
 import 'moment-duration-format';
 import { Container, Button, Segment, Label, Statistic, Dimmer, Loader } from "semantic-ui-react";
-
+import { formatDuration } from '../util/formatting';
 import TopBarContainer from '../features/TopBarContainer';
 
-const duration = (start, end) => {
-    const numSeconds = parseInt((end - start) / 1000);
-    return moment.duration(numSeconds, 'seconds').format('mm:ss');
-};
+const duration = (start, end) => formatDuration(end - start);
 
 const circuitStats = circuit => [
     { label: 'Time', value: duration(circuit.startTime, circuit.endTime) },
