@@ -16,8 +16,8 @@ const getPrevCircuit = state => {
     }, undefined);
 };
 
-const mapState = (state) => {
-    let circuitRequested;
+export const mapState = (state) => {
+    let circuitRequested = false;
     if (state.start) {
         circuitRequested = state.start.circuitRequested;
     }
