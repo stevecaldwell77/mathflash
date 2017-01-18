@@ -2,8 +2,8 @@ import React from 'react';
 import moment from 'moment';
 import 'moment-duration-format';
 import { Container, Button, Segment, Label, Statistic, Dimmer, Loader } from "semantic-ui-react";
-import { formatDuration } from '../util/formatting';
-import TopBarContainer from '../features/TopBarContainer';
+import { formatDuration } from '../../util/formatting';
+import TopBar from '../../features/TopBar';
 
 const duration = (start, end) => formatDuration(end - start);
 
@@ -24,9 +24,9 @@ const PrevCircuitStats = ({ prevCircuit }) => {
     </Segment>;
 };
 
-const Start = ({ circuitRequested, onStart, prevCircuit}) => (
+const Component = ({ circuitRequested, onStart, prevCircuit}) => (
     <Container textAlign="center">
-        <TopBarContainer />
+        <TopBar />
         { prevCircuit && <PrevCircuitStats prevCircuit={prevCircuit} /> }
         <Button positive size='massive' onClick={onStart}>
           START
@@ -35,10 +35,10 @@ const Start = ({ circuitRequested, onStart, prevCircuit}) => (
     </Container>
 );
 
-Start.propTypes = {
+Component.propTypes = {
     onStart: React.PropTypes.func.isRequired,
     circuitRequested: React.PropTypes.bool,
     prevCircuit: React.PropTypes.object,
 };
 
-export default Start;
+export default Component;

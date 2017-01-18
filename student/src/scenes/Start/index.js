@@ -1,6 +1,6 @@
 import { toPairs } from 'lodash';
 import { connect } from 'react-redux';
-import Start from './Start';
+import Component from './Component';
 
 const start = () => {};
 
@@ -34,4 +34,4 @@ const actions = {
 export default connect(
     mapState,
     actions,
-)(Start);
+)(Component);

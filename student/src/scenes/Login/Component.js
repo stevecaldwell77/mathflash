@@ -1,8 +1,8 @@
 import React from 'react';
 import { Container, Header, Icon, Dimmer, Loader, Grid } from "semantic-ui-react";
-import Form from './Login/Form';
+import Form from './Form';
 
-const Login = ({ waiting, students, errorMsg, onStudentChange }) => (
+const Component = ({ waiting, students, errorMsg, onStudentChange }) => (
     <Container>
         <Header as='h2' icon textAlign='center'>
             <Icon name='users' circular />
@@ -28,11 +28,11 @@ const Login = ({ waiting, students, errorMsg, onStudentChange }) => (
     </Container>
 );
 
-Login.propTypes = {
+Component.propTypes = {
     waiting: React.PropTypes.bool,
     students: React.PropTypes.array,
     errorMsg: React.PropTypes.string,
     onStudentChange: React.PropTypes.func.isRequired,
 };
 
-export default Login;
+export default Component;

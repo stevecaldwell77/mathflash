@@ -1,8 +1,8 @@
 import React from 'react';
 import { Container, Grid, Divider, Progress, Statistic, Header, Button, Icon } from "semantic-ui-react";
 
-import { formatDuration } from '../util/formatting';
-import TopBarContainer from '../features/TopBarContainer';
+import { formatDuration } from '../../util/formatting';
+import TopBar from '../../features/TopBar';
 
 const elapsedColor = elapsed => (
      elapsed > 55000  ? 'red'
@@ -50,7 +50,7 @@ const Problem = ({problem}) => (
 
 const Circuit = ({ onStop, elapsed, numCompleted, problem }) => (
     <Container textAlign="center">
-        <TopBarContainer />
+        <TopBar />
         <StatsRow elapsed={elapsed} numCompleted={numCompleted} />
         <Divider />
         <Problem problem={problem} />

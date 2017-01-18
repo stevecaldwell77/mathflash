@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Login from './Login';
+import Component from './Component';
 
 const login = () => {};
 
@@ -40,4 +40,4 @@ const actions = {
 export default connect(
     mapState,
     actions,
-)(Login);
+)(Component);

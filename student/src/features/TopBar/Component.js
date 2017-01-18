@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, Button, Header, Icon, Segment } from "semantic-ui-react";
 
-const TopBar = ({ currentStudentName, onLogoutClick }) => (
+const Component = ({ currentStudentName, onLogoutClick }) => (
     <Segment inverted>
         <Grid columns={2}>
             <Grid.Column textAlign='left'>
@@ -19,9 +19,9 @@ const TopBar = ({ currentStudentName, onLogoutClick }) => (
     </Segment>
 );
 
-TopBar.propTypes = {
+Component.propTypes = {
     currentStudentName: React.PropTypes.string.isRequired,
     onLogoutClick: React.PropTypes.func.isRequired,
 };
 
-export default TopBar;
+export default Component;

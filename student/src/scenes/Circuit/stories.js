@@ -1,11 +1,11 @@
 import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
-import { stubTopBarContainer } from '../stubs';
+import { stubTopBar } from '../../stubs';
 
 // import "semantic-ui-css/semantic.css";
 
-stubTopBarContainer();
-const Circuit = require('./Circuit').default;
+stubTopBar();
+const Circuit = require('./').default;
 
 const onStop = action('stop');
 

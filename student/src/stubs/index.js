@@ -1,8 +1,8 @@
 import { setStubbingMode, stub } from 'react-stubber';
 
-export const stubTopBarContainer = () => {
+export const stubTopBar = () => {
     setStubbingMode(true);
-    const Container = require('../features/TopBarContainer').default;
-    const Stub = require('../stubs/TopBarContainer').default;
+    const Container = require('../features/TopBar/index').default;
+    const Stub = require('../stubs/TopBar').default;
     stub(Container, Stub);
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
 
-const Login = require('./Login').default;
+const Component = require('./Component').default;
 
 import "semantic-ui-css/semantic.css";
 
@@ -15,12 +15,12 @@ const onStudentChange = action('student-chosen');
 
 storiesOf('Login', module)
     .add('waiting', () => (
-        <Login waiting onStudentChange={onStudentChange} />
+        <Component waiting onStudentChange={onStudentChange} />
     ))
     .add('ready', () => (
-        <Login students={students} onStudentChange={onStudentChange}/>
+        <Component students={students} onStudentChange={onStudentChange}/>
     ))
     .add('error', () => (
-        <Login students={students} onStudentChange={onStudentChange}
+        <Component students={students} onStudentChange={onStudentChange}
             errorMsg="An Unknown Error Occurred"/>
     ));

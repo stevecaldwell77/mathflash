@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { mayBeStubbed } from 'react-stubber';
-import TopBar from './TopBar';
+import Component from './Component';
 
 const logout = () => {};
 
@@ -18,5 +18,5 @@ export default mayBeStubbed(
     connect(
         mapState,
         actions,
-    )(TopBar)
+    )(Component)
 );

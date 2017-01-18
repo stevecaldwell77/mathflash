@@ -1,11 +1,11 @@
 import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
-import { stubTopBarContainer } from '../stubs';
+import { stubTopBar } from '../../stubs';
 
 import "semantic-ui-css/semantic.css";
 
-stubTopBarContainer();
-const Start = require('./Start').default;
+stubTopBar();
+const Component = require('./Component').default;
 
 const onStart = action('start');
 
@@ -17,11 +17,11 @@ const prevCircuit = {
 
 storiesOf('Start', module)
     .add('no previous circuit', () => (
-        <Start onStart={onStart} />
+        <Component onStart={onStart} />
     ))
     .add('has previous circuit', () => (
-        <Start onStart={onStart} prevCircuit={prevCircuit} />
+        <Component onStart={onStart} prevCircuit={prevCircuit} />
     ))
     .add('circuit requested', () => (
-        <Start onStart={onStart} prevCircuit={prevCircuit} circuitRequested={true} />
+        <Component onStart={onStart} prevCircuit={prevCircuit} circuitRequested={true} />
     ));
