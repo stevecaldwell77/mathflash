@@ -3,6 +3,7 @@ import { Container, Grid, Divider, Progress, Statistic, Header, Button, Icon } f
 
 import { formatDuration } from '../../util/formatting';
 import TopBar from '../../features/TopBar';
+import Waiting from '../../features/Waiting';
 
 const elapsedColor = elapsed => (
      elapsed > 55000  ? 'red'
@@ -15,7 +16,7 @@ const elapsedColor = elapsed => (
 const StatsRow = ({elapsed, numCompleted}) => (
     <Grid verticalAlign="middle" centered>
         <Grid.Row>
-            <Grid.Column width={13}>
+            <Grid.Column width={13}>``
                 <Progress size="small" percent={elapsed/60000*100} color={elapsedColor(elapsed)}/>
             </Grid.Column>
             <Grid.Column width={3}>
@@ -48,7 +49,7 @@ const Problem = ({problem}) => (
     </Grid>
 );
 
-const Circuit = ({ onStop, elapsed, numCompleted, problem }) => (
+const Circuit = ({ onStop, elapsed, numCompleted, problem, waiting }) => (
     <Container textAlign="center">
         <TopBar />
         <StatsRow elapsed={elapsed} numCompleted={numCompleted} />
@@ -56,6 +57,7 @@ const Circuit = ({ onStop, elapsed, numCompleted, problem }) => (
         <Problem problem={problem} />
         <Divider />
         <Button circular color="red" onClick={onStop}><Icon name='stop' />STOP</Button>
+        {waiting && <Waiting />}
     </Container>
 );
 
@@ -64,6 +66,7 @@ Circuit.propTypes = {
     elapsed: React.PropTypes.number.isRequired,
     numCompleted: React.PropTypes.number.isRequired,
     problem: React.PropTypes.object.isRequired,
+    waiting: React.PropTypes.bool,
 };
 
 export default Circuit;

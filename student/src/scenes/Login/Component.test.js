@@ -5,5 +5,5 @@ import Component from './Component';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<Component onStudentChange={noop}/>, div);
+  ReactDOM.render(<Component students={[]} onStudentChange={noop}/>, div);
 });

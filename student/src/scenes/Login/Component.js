@@ -1,5 +1,6 @@
 import React from 'react';
-import { Container, Header, Icon, Dimmer, Loader, Grid } from "semantic-ui-react";
+import { Container, Header, Icon, Grid } from "semantic-ui-react";
+import Waiting from '../../features/Waiting';
 import Form from './Form';
 
 const Component = ({ waiting, students, errorMsg, onStudentChange }) => (
@@ -10,27 +11,22 @@ const Component = ({ waiting, students, errorMsg, onStudentChange }) => (
                 Welcome to MathFlash
             </Header.Content>
         </Header>
-        { waiting ? (
-            <Dimmer active>
-                <Loader size='large'>Loading</Loader>
-            </Dimmer>
-        ) : (
-            <Grid centered columns={2}>
-                <Grid.Column>
-                    <Form
-                        students={students}
-                        errorMsg={errorMsg}
-                        onStudentChange={onStudentChange}
-                    />
-                </Grid.Column>
-            </Grid>
-        )}
+        <Grid centered columns={2}>
+            <Grid.Column>
+                <Form
+                    students={students}
+                    errorMsg={errorMsg}
+                    onStudentChange={onStudentChange}
+                />
+            </Grid.Column>
+        </Grid>
+        { waiting && <Waiting /> }
     </Container>
 );
 
 Component.propTypes = {
     waiting: React.PropTypes.bool,
-    students: React.PropTypes.array,
+    students: React.PropTypes.array.isRequired,
     errorMsg: React.PropTypes.string,
     onStudentChange: React.PropTypes.func.isRequired,
 };

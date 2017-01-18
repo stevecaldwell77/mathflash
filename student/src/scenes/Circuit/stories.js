@@ -33,4 +33,17 @@ storiesOf('Circuit', module)
                 operator: '+',
             }}
         />
+    ))
+    .add('waiting', () => (
+        <Circuit
+            onStop={onStop}
+            elapsed={45000}
+            numCompleted={20}
+            problem={{
+                firstNumber: 2,
+                secondNumber: 3,
+                operator: '+',
+            }}
+            waiting
+        />
     ));

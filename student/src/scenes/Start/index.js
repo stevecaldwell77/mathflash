@@ -17,9 +17,9 @@ const getPrevCircuit = state => {
 };
 
 export const mapState = (state) => {
-    let circuitRequested = false;
+    let waiting = false;
     if (state.start) {
-        circuitRequested = state.start.circuitRequested;
+        waiting = state.start.circuitRequested;
     }
 
     let prevCircuit;
@@ -32,7 +32,7 @@ export const mapState = (state) => {
     }
 
     return {
-        circuitRequested,
+        waiting,
         prevCircuit,
     };
 };

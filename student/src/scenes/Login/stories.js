@@ -15,7 +15,7 @@ const onStudentChange = action('student-chosen');
 
 storiesOf('Login', module)
     .add('waiting', () => (
-        <Component waiting onStudentChange={onStudentChange} />
+        <Component waiting students={[]} onStudentChange={onStudentChange} />
     ))
     .add('ready', () => (
         <Component students={students} onStudentChange={onStudentChange}/>

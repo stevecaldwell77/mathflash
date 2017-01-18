@@ -21,6 +21,6 @@ storiesOf('Start', module)
     .add('has previous circuit', () => (
         <Component onStart={onStart} prevCircuit={prevCircuit} />
     ))
-    .add('circuit requested', () => (
-        <Component onStart={onStart} prevCircuit={prevCircuit} circuitRequested={true} />
+    .add('waiting', () => (
+        <Component onStart={onStart} prevCircuit={prevCircuit} waiting={true} />
     ));

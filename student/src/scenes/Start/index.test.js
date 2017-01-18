@@ -4,7 +4,7 @@ test('mapState: empty state', () => {
     const state = {};
     const result = mapState(state);
     expect(result).toEqual({
-        circuitRequested: false,
+        waiting: false,
         prevCircuit: undefined,
     });
 });
@@ -17,7 +17,7 @@ test('mapState: circuit requested', () => {
     };
     const result = mapState(state);
     expect(result).toEqual({
-        circuitRequested: true,
+        waiting: true,
         prevCircuit: undefined,
     });
 });
@@ -45,7 +45,7 @@ test('mapState: prevCircuit', () => {
     };
     const result = mapState(state);
     expect(result).toEqual({
-        circuitRequested: false,
+        waiting: false,
         prevCircuit: {
             elapsed: 60000,
             numCompleted: 25,
