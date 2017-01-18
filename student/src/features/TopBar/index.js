@@ -6,7 +6,7 @@ const logout = () => {};
 
 const currentStudent = state => state.entities.students[state.session.currentStudentId];
 
-const mapState = state => ({
+export const mapState = state => ({
     currentStudentName: currentStudent(state).studentName,
 });
 
