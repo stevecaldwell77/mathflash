@@ -10,8 +10,7 @@ const Component = require('./Component').default;
 const onStart = action('start');
 
 const prevCircuit = {
-    startTime: 1484599405,
-    endTime: 1484599405 + 60000,
+    elapsed: 60000,
     numCompleted: 24,
 };
 

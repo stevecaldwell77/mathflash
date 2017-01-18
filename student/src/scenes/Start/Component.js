@@ -5,10 +5,8 @@ import { Container, Button, Segment, Label, Statistic, Dimmer, Loader } from "se
 import { formatDuration } from '../../util/formatting';
 import TopBar from '../../features/TopBar';
 
-const duration = (start, end) => formatDuration(end - start);
-
 const circuitStats = circuit => [
-    { label: 'Time', value: duration(circuit.startTime, circuit.endTime) },
+    { label: 'Time', value: formatDuration(circuit.elapsed) },
     { label: 'Completed', value: circuit.numCompleted },
 ];
 
@@ -38,7 +36,10 @@ const Component = ({ circuitRequested, onStart, prevCircuit}) => (
 Component.propTypes = {
     onStart: React.PropTypes.func.isRequired,
     circuitRequested: React.PropTypes.bool,
-    prevCircuit: React.PropTypes.object,
+    prevCircuit: React.PropTypes.shape({
+        elapsed: React.PropTypes.number.isRequired,
+        numCompleted: React.PropTypes.number.isRequired,
+    }),
 };
 
 export default Component;
