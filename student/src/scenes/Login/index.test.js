@@ -2,9 +2,11 @@ import { mapState } from './';
 
 const testStudents = {
     1: {
+        studentId: '1',
         studentName: 'Joe',
     },
     2: {
+        studentId: '2',
         studentName: 'Jill',
     },
 };

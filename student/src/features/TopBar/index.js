@@ -1,14 +1,16 @@
 import { connect } from 'react-redux';
 import { mayBeStubbed } from 'react-stubber';
+import { getCurrentStudent } from '../../App/selectors';
 import Component from './Component';
 
 const logout = () => {};
 
-const currentStudent = state => state.entities.students[state.session.currentStudentId];
-
-export const mapState = state => ({
-    currentStudentName: currentStudent(state).studentName,
-});
+export const mapState = state => {
+    const student = getCurrentStudent(state) || {};
+    return {
+        currentStudentName: student.studentName,
+    }
+};
 
 const actions = {
     onLogoutClick: logout,
