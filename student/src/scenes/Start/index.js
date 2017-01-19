@@ -1,4 +1,3 @@
-import { toPairs } from 'lodash';
 import { connect } from 'react-redux';
 import { getCircuitRequested, getPrevCircuit } from './selectors';
 import Component from './Component';

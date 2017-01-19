@@ -1,7 +1,6 @@
 import React from 'react';
 import { Container, Grid, Divider, Progress, Statistic, Header, Button, Icon } from "semantic-ui-react";
 
-import { formatDuration } from '../../util/formatting';
 import TopBar from '../../features/TopBar';
 import Waiting from '../../features/Waiting';
 

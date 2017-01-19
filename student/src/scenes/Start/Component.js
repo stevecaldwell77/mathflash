@@ -1,6 +1,4 @@
 import React from 'react';
-import moment from 'moment';
-import 'moment-duration-format';
 import { Container, Button, Segment, Label, Statistic } from "semantic-ui-react";
 import { formatDuration } from '../../util/formatting';
 import TopBar from '../../features/TopBar';

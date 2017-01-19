@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { chain, get } from 'lodash';
+import { chain } from 'lodash';
 import { fromJS } from 'immutable';
 
 const getSession = state => state.get('session');
