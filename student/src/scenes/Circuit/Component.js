@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Grid, Divider, Progress, Statistic, Header, Button, Icon } from "semantic-ui-react";
+import { Container, Grid, Divider, Progress, Statistic, Header, Button } from "semantic-ui-react";
 
 import TopBar from '../../features/TopBar';
 import Waiting from '../../features/Waiting';
@@ -48,20 +48,43 @@ const Problem = ({problem}) => (
     </Grid>
 );
 
-const Circuit = ({ onStop, elapsed, numCompleted, problem, waiting }) => (
+const StopButton = ({ onClick }) => (
+    <Button
+        circular
+        color="red"
+        onClick={onClick}
+        content='Stop'
+        icon='stop'
+    />
+);
+
+const SkipButton = ({ onClick }) => (
+    <Button
+        circular
+        color="green"
+        onClick={onClick}
+        content='Skip'
+        labelPosition='right'
+        icon='forward'
+    />
+);
+
+const Circuit = ({ onStop, onSkip, elapsed, numCompleted, problem, waiting }) => (
     <Container textAlign="center">
         <TopBar />
         <StatsRow elapsed={elapsed} numCompleted={numCompleted} />
         <Divider />
         <Problem problem={problem} />
         <Divider />
-        <Button circular color="red" onClick={onStop}><Icon name='stop' />STOP</Button>
+        <StopButton onClick={onStop} />
+        <SkipButton onClick={onSkip} />
         {waiting && <Waiting />}
     </Container>
 );
 
 Circuit.propTypes = {
     onStop: React.PropTypes.func.isRequired,
+    onSkip: React.PropTypes.func.isRequired,
     elapsed: React.PropTypes.number.isRequired,
     numCompleted: React.PropTypes.number.isRequired,
     problem: React.PropTypes.shape({

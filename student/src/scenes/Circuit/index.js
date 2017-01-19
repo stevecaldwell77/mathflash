@@ -9,6 +9,7 @@ import {
 import Component from './Component';
 
 const stop = () => {};
+const skip = () => {};
 
 const elapsed = (state, asOf = Date.now) => asOf - getStartTime(state);
 
@@ -30,6 +31,7 @@ export const mapState = (state, options = {}) => {
 
 const actions = {
     onStop: stop,
+    onSkip: skip,
 };
 
 export default connect(
