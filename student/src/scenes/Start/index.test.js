@@ -1,7 +1,8 @@
+import { fromJS } from 'immutable';
 import { mapState } from './';
 
 test('mapState: empty state', () => {
-    const state = {};
+    const state = fromJS({});
     const result = mapState(state);
     expect(result).toEqual({
         waiting: false,
@@ -10,11 +11,11 @@ test('mapState: empty state', () => {
 });
 
 test('mapState: circuit requested', () => {
-    const state = {
+    const state = fromJS({
         start: {
             circuitRequested: true,
         },
-    };
+    });
     const result = mapState(state);
     expect(result).toEqual({
         waiting: true,
@@ -23,7 +24,7 @@ test('mapState: circuit requested', () => {
 });
 
 test('mapState: prevCircuit', () => {
-    const state = {
+    const state = fromJS({
         entities: {
             circuits: {
                 1: {
@@ -42,7 +43,7 @@ test('mapState: prevCircuit', () => {
                 },
             },
         },
-    };
+    });
     const result = mapState(state);
     expect(result).toEqual({
         waiting: false,

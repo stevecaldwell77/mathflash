@@ -1,3 +1,4 @@
+import { fromJS } from 'immutable';
 import { mapState } from './';
 
 const testStudents = {
@@ -12,7 +13,7 @@ const testStudents = {
 };
 
 test('mapState: empty state', () => {
-    const state = {};
+    const state = fromJS({});
     const result = mapState(state);
     expect(result).toEqual({
         students: [],
@@ -22,11 +23,11 @@ test('mapState: empty state', () => {
 });
 
 test('mapState: students fetched', () => {
-    const state = {
+    const state = fromJS({
         entities: {
             students: testStudents,
         },
-    };
+    });
     const result = mapState(state);
     expect(result).toEqual({
         students: [
@@ -39,14 +40,14 @@ test('mapState: students fetched', () => {
 });
 
 test('mapState: form submitted', () => {
-    const state = {
+    const state = fromJS({
         entities: {
             students: testStudents,
         },
         login: {
             formSubmitted: true,
         },
-    };
+    });
     const result = mapState(state);
     expect(result).toEqual({
         students: [
@@ -59,7 +60,7 @@ test('mapState: form submitted', () => {
 });
 
 test('mapState: error', () => {
-    const state = {
+    const state = fromJS({
         entities: {
             students: testStudents,
         },
@@ -67,7 +68,7 @@ test('mapState: error', () => {
             formSubmitted: false,
             errorMsg: 'There was an error',
         },
-    };
+    });
     const result = mapState(state);
     expect(result).toEqual({
         students: [

@@ -1,3 +1,4 @@
+import { fromJS } from 'immutable';
 import { mapState } from './';
 
 const testCircuits = {
@@ -18,13 +19,13 @@ const testCircuits = {
 };
 
 test('mapState: showing problem', () => {
-    const state = {
+    const state = fromJS({
         entities: {
             circuits: testCircuits,
         },
         circuit: {
         },
-    };
+    });
     const result = mapState(state, { asOf: 1484770140000 });
     expect(result).toEqual({
         elapsed: 20000,
@@ -39,14 +40,14 @@ test('mapState: showing problem', () => {
 });
 
 test('mapState: loading problem', () => {
-    const state = {
+    const state = fromJS({
         entities: {
             circuits: testCircuits,
         },
         circuit: {
             loadingProblem: true,
         },
-    };
+    });
     const result = mapState(state, { asOf: 1484770145000 });
     expect(result).toEqual({
         elapsed: 25000,
@@ -61,14 +62,14 @@ test('mapState: loading problem', () => {
 });
 
 test('mapState: stopping', () => {
-    const state = {
+    const state = fromJS({
         entities: {
             circuits: testCircuits,
         },
         circuit: {
             stopRequested: true,
         },
-    };
+    });
     const result = mapState(state, { asOf: 1484770150000 });
     expect(result).toEqual({
         elapsed: 30000,

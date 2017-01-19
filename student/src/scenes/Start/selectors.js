@@ -3,17 +3,22 @@ import {
     getPreviousCircuit as getPrevCircuitEntity
 } from '../../App/selectors';
 
-const getSceneState = state => state.start || {};
+const getSceneState = state => state.get('start');
 
 export const getCircuitRequested = createSelector(
     getSceneState,
-    state => state.circuitRequested,
+    state => state && state.get('circuitRequested'),
+);
+
+const elapsed = circuit => (
+    circuit.get('endTime')
+    - circuit.get('startTime')
 );
 
 export const getPrevCircuit = createSelector(
     getPrevCircuitEntity,
     (circuit) => circuit && {
-        numCompleted: circuit.numCompleted,
-        elapsed: circuit.endTime - circuit.startTime,
+        numCompleted: circuit.get('numCompleted'),
+        elapsed: elapsed(circuit),
     },
 );

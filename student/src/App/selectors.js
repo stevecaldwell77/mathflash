@@ -1,37 +1,49 @@
 import { createSelector } from 'reselect';
 import { chain, get } from 'lodash';
+import { fromJS } from 'immutable';
 
-const getSession = state => get(state, 'session', {});
-const getCurrentStudentId = state => getSession(state).currentStudentId;
+const getSession = state => state.get('session');
+const getCurrentStudentId = state =>
+    getSession(state) && getSession(state).get('currentStudentId');
 
-const getEntities = state => get(state, 'entities', {});
+const getEntities = state => state.get('entities');
 
-export const getStudents = state => get(getEntities(state), 'students', {});
+export const getStudents = createSelector(
+    getEntities,
+    entities => entities && entities.get('students'),
+);
 
-export const getCircuits = state => get(getEntities(state), 'circuits', {});
+export const getCircuits = createSelector(
+    getEntities,
+    entities => entities && entities.get('circuits'),
+);
 
 export const getCurrentStudent = createSelector(
     getCurrentStudentId,
     getStudents,
-    (studentId, students) => studentId && students[studentId]
+    (studentId, students) => studentId && students && students.get(studentId),
 );
 
 export const getActiveCircuit = createSelector(
     getCircuits,
-    circuits => chain(circuits)
-        .values()
-        .filter(c => !c.endTime)
-        .sortBy(c => c.startTime)
-        .last()
-        .value()
+    circuits => circuits && fromJS(
+        chain(circuits.toJS())
+            .values()
+            .filter(c => !c.endTime)
+            .sortBy(c => c.startTime)
+            .last()
+            .value()
+    ),
 );
 
 export const getPreviousCircuit = createSelector(
     getCircuits,
-    circuits => chain(circuits)
-        .values()
-        .filter(c => c.endTime)
-        .sortBy(c => c.startTime)
-        .last()
-        .value()
+    circuits => circuits && fromJS(
+        chain(circuits.toJS())
+            .values()
+            .filter(c => c.endTime)
+            .sortBy(c => c.startTime)
+            .last()
+            .value()
+    )
 );
