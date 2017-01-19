@@ -15,11 +15,11 @@ export const mapState = (state) => ({
     errorMsg: getErrorMsg(state),
 });
 
-const actions = {
-    onStudentChange: login,
-};
+const mapDispatch = dispatch => ({
+    onStudentChange: (e, { value }) => dispatch(login(value)),
+});
 
 export default connect(
     mapState,
-    actions,
+    mapDispatch,
 )(Component);

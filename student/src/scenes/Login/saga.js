@@ -1,7 +1,14 @@
 import { delay } from 'redux-saga';
 import { put, takeLatest } from 'redux-saga/effects';
-import { LOAD_STUDENTS } from './constants';
-import { loadStudentsSuccess } from './actions';
+import {
+    LOAD_STUDENTS,
+    LOGIN,
+} from './constants';
+import {
+    loadStudentsSuccess,
+    loginSuccess,
+    // loginError,
+} from './actions';
 
 const students = {
     '1': {
@@ -23,13 +30,15 @@ function* fetchStudents(action) {
     yield put(loadStudentsSuccess(students));
 }
 
-function* studentsSaga() {
-    yield takeLatest(LOAD_STUDENTS, fetchStudents);
+function* loginStudent(action) {
+    yield delay(1000);
+    yield put(loginSuccess(action.studentId));
+    // yield put(loginError('There was an error'));
 }
-
 
 export default function* saga() {
     yield [
-        studentsSaga(),
+        takeLatest(LOAD_STUDENTS, fetchStudents),
+        takeLatest(LOGIN, loginStudent),
     ]
 }
