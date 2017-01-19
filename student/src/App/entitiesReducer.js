@@ -10,7 +10,7 @@ const reducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_STUDENTS_SUCCESS:
             return state
-                .set(students, fromJS(action.students));
+                .set('students', fromJS(action.students));
         default:
             return state;
     }

@@ -10,7 +10,7 @@ const reducer = (state = initialState, action) => {
     switch (action.type) {
         case LOGIN:
             return state
-                .set(formSubmitted, true)
+                .set('formSubmitted', true)
                 .set('errorMsg', undefined);
         case LOGIN_SUCCESS:
             return state
