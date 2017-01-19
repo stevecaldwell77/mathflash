@@ -1,8 +1,7 @@
 import { connect } from 'react-redux';
 import { getStudents, getFormSubmitted, getErrorMsg } from './selectors';
+import { login } from './actions';
 import Component from './Component';
-
-const login = () => {};
 
 const waiting = state => (
     (getStudents(state).length === 0) ||
