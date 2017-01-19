@@ -16,7 +16,7 @@ const elapsedColor = elapsed => (
 const StatsRow = ({elapsed, numCompleted}) => (
     <Grid verticalAlign="middle" centered>
         <Grid.Row>
-            <Grid.Column width={13}>``
+            <Grid.Column width={13}>
                 <Progress size="small" percent={elapsed/60000*100} color={elapsedColor(elapsed)}/>
             </Grid.Column>
             <Grid.Column width={3}>
