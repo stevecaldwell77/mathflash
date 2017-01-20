@@ -1,17 +1,8 @@
 import { delay } from 'redux-saga';
 import { put, takeLatest } from 'redux-saga/effects';
-import {
-    START_CIRCUIT,
-} from './constants';
-import {
-    circuitReady,
-} from './actions';
-
-function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+import { START_CIRCUIT } from './constants';
+import { circuitReady } from './actions';
+import { getRandomInt } from '../../util/math';
 
 const newCircuit = () => ({
     circuitId: getRandomInt(1, 100000),
