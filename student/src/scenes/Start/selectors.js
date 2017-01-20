@@ -5,9 +5,9 @@ import {
 
 const getSceneState = state => state.get('start');
 
-export const getCircuitRequested = createSelector(
+export const getWaitingForCircuit = createSelector(
     getSceneState,
-    state => state && state.get('circuitRequested'),
+    state => state && state.get('waitingForCircuit'),
 );
 
 const elapsed = circuit => (

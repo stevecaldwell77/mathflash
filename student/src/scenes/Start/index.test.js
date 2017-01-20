@@ -13,7 +13,7 @@ test('mapState: empty state', () => {
 test('mapState: circuit requested', () => {
     const state = fromJS({
         start: {
-            circuitRequested: true,
+            waitingForCircuit: true,
         },
     });
     const result = mapState(state);

@@ -88,8 +88,14 @@ Circuit.propTypes = {
     elapsed: React.PropTypes.number.isRequired,
     numCompleted: React.PropTypes.number.isRequired,
     problem: React.PropTypes.shape({
-        firstNumber: React.PropTypes.string.isRequired,
-        secondNumber: React.PropTypes.string.isRequired,
+        firstNumber: React.PropTypes.oneOfType([
+            React.PropTypes.string,
+            React.PropTypes.number,
+        ]).isRequired,
+        secondNumber: React.PropTypes.oneOfType([
+            React.PropTypes.string,
+            React.PropTypes.number,
+        ]).isRequired,
         operator: React.PropTypes.string.isRequired,
     }).isRequired,
     waiting: React.PropTypes.bool,

@@ -1,16 +1,10 @@
 import { connect } from 'react-redux';
-import { getCircuitRequested, getPrevCircuit } from './selectors';
+import { getWaitingForCircuit, getPrevCircuit } from './selectors';
+import { start } from './actions';
 import Component from './Component';
 
-const start = () => {};
-
-const waiting = state => (
-    getCircuitRequested(state) ||
-    false
-);
-
 export const mapState = (state) => ({
-    waiting: waiting(state),
+    waiting: getWaitingForCircuit(state) || false,
     prevCircuit: getPrevCircuit(state),
 });
 

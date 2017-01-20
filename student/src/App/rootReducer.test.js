@@ -15,5 +15,8 @@ it('initial state', () => {
             errorMsg: undefined,
             formSubmitted: false,
         },
+        start: {
+            waitingForCircuit: false,
+        },
     });
 });
