@@ -1,6 +1,10 @@
 import { fromJS } from 'immutable';
-import { LOGOUT } from '../../App/session/constants';
-import { LOGIN, LOGIN_SUCCESS, LOGIN_ERROR } from './constants';
+import {
+    LOGIN,
+    LOGIN_SUCCESS,
+    LOGIN_ERROR,
+    LOGOUT,
+} from '../../App/session/constants';
 
 const initialState = fromJS({
     formSubmitted: false,

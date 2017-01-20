@@ -1,6 +1,5 @@
 import { fromJS } from 'immutable';
-import { LOGOUT, LOGOUT_COMPLETE } from './constants';
-import { LOGIN_SUCCESS } from '../../scenes/Login/constants';
+import { LOGIN_SUCCESS, LOGOUT, LOGOUT_COMPLETE } from './constants';
 
 const initialState = fromJS({
     currentStudentId: undefined,

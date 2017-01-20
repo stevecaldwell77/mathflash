@@ -5,7 +5,7 @@ import {
     getErrorMsg,
 } from './selectors';
 import { getLoggingOut } from '../../App/session/selectors';
-import { login } from './actions';
+import { login } from '../../App/session/actions';
 import Component from './Component';
 
 const waiting = state => (
