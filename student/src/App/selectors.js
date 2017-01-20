@@ -2,7 +2,8 @@ import { createSelector } from 'reselect';
 import { chain } from 'lodash';
 import { fromJS } from 'immutable';
 
-const getSession = state => state.get('session');
+export const getSession = state => state.get('session');
+
 const getCurrentStudentId = state =>
     getSession(state) && getSession(state).get('currentStudentId');
 

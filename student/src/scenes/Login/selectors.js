@@ -1,6 +1,9 @@
 import { createSelector } from 'reselect';
 import { chain } from 'lodash';
-import { getStudents as getStudentEntities } from '../../App/selectors';
+import {
+    getSession,
+    getStudents as getStudentEntities,
+} from '../../App/selectors';
 
 const getSceneState = state => state.get('login');
 
@@ -23,4 +26,9 @@ export const getStudents = createSelector(
             .sortBy('name')
             .value()
         : []
+);
+
+export const getLoggingOut = createSelector(
+    getSession,
+    session => session.get('loggingOut'),
 );

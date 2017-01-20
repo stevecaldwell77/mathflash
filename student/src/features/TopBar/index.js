@@ -1,9 +1,8 @@
 import { connect } from 'react-redux';
 import { mayBeStubbed } from 'react-stubber';
+import { logout } from '../../App/actions';
 import { currentStudentName } from './selectors';
 import Component from './Component';
-
-const logout = () => {};
 
 export const mapState = state => ({
     currentStudentName: currentStudentName(state),

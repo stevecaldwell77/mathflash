@@ -1,4 +1,5 @@
 import { fromJS } from 'immutable';
+import { LOGOUT } from './constants';
 import { LOAD_STUDENTS_SUCCESS } from '../scenes/Login/constants';
 
 const initialState = fromJS({
@@ -11,6 +12,9 @@ const reducer = (state = initialState, action) => {
         case LOAD_STUDENTS_SUCCESS:
             return state
                 .set('students', fromJS(action.students));
+        case LOGOUT:
+            return state
+                .set('circuits', fromJS([]));
         default:
             return state;
     }
