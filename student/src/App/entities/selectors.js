@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import { chain } from 'lodash';
 import { fromJS } from 'immutable';
-import { getCurrentStudentId } from './session/selectors';
+import { getCurrentStudentId } from '../session/selectors';
 
 const getEntities = state => state.get('entities');
 

@@ -2,7 +2,7 @@ import { createSelector } from 'reselect';
 import { chain } from 'lodash';
 import {
     getStudents as getStudentEntities,
-} from '../../App/selectors';
+} from '../../App/entities/selectors';
 
 const getSceneState = state => state.get('login');
 

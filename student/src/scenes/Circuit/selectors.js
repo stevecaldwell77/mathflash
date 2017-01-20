@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { getActiveCircuit } from '../../App/selectors';
+import { getActiveCircuit } from '../../App/entities/selectors';
 
 const getSceneState = state => state.get('circuit');
 

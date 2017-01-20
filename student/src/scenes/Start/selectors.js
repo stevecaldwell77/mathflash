@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import {
     getPreviousCircuit as getPrevCircuitEntity
-} from '../../App/selectors';
+} from '../../App/entities/selectors';
 
 const getSceneState = state => state.get('start');
 

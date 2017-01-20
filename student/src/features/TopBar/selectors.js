@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { getCurrentStudent } from '../../App/selectors';
+import { getCurrentStudent } from '../../App/entities/selectors';
 
 export const currentStudentName = createSelector(
     getCurrentStudent,

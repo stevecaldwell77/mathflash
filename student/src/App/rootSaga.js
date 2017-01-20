@@ -1,18 +1,13 @@
-import { put } from 'redux-saga/effects';
-import { loadStudents } from '../scenes/Login/actions';
+import entitiesSaga from './entities/saga';
 import sessionSaga from './session/saga';
 import loginSaga from '../scenes/Login/saga';
 // import startSceneSaga from '../scenes/Start/saga';
 
-function* startupSaga() {
-    yield put(loadStudents());
-}
-
 export default function* rootSaga() {
     yield [
+        entitiesSaga(),
         sessionSaga(),
         loginSaga(),
         // startSceneSaga(),
-        startupSaga(),
     ]
 }

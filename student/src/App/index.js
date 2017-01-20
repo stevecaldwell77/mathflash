@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getActiveCircuit, getCurrentStudent } from './selectors';
+import { getActiveCircuit, getCurrentStudent } from './entities/selectors';
 import Login from '../scenes/Login';
 import Start from '../scenes/Start';
 import Circuit from '../scenes/Circuit';
