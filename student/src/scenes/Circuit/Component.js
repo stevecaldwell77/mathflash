@@ -58,17 +58,6 @@ const StopButton = ({ onClick }) => (
     />
 );
 
-const SkipButton = ({ onClick }) => (
-    <Button
-        circular
-        color="green"
-        onClick={onClick}
-        content='Skip'
-        labelPosition='right'
-        icon='forward'
-    />
-);
-
 const Circuit = ({ onStop, onSkip, elapsed, numCompleted, problem, waiting }) => (
     <Container textAlign="center">
         <TopBar />
@@ -77,7 +66,6 @@ const Circuit = ({ onStop, onSkip, elapsed, numCompleted, problem, waiting }) =>
         <Problem problem={problem} />
         <Divider />
         <StopButton onClick={onStop} />
-        <SkipButton onClick={onSkip} />
         {waiting && <Waiting />}
     </Container>
 );
