@@ -5,11 +5,11 @@ import TopBar from '../../features/TopBar';
 import Waiting from '../../features/Waiting';
 
 const elapsedColor = elapsed => (
-     elapsed  > 1 - 6.25 ? 'red'
-    : elapsed > 1 - 12.5 ? 'orange'
-    : elapsed > 1 - 25   ? 'yellow'
-    : elapsed > 1 - 50   ? 'olive'
-                         : 'green'
+     elapsed  > 100 - 6.25 ? 'red'
+    : elapsed > 100 - 12.5 ? 'orange'
+    : elapsed > 100 - 25   ? 'yellow'
+    : elapsed > 100 - 50   ? 'olive'
+                           : 'green'
 );
 
 const StatsRow = ({elapsed, numCompleted}) => (
