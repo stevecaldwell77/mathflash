@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { mayBeStubbed } from 'react-stubber';
-import { logout } from '../../App/actions';
+import { logout } from '../../App/session/actions';
 import { currentStudentName } from './selectors';
 import Component from './Component';
 

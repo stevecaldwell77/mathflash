@@ -7,7 +7,10 @@ it('initial state', () => {
             students: [],
             circuits: [],
         },
-        session: {},
+        session: {
+            currentStudentId: undefined,
+            loggingOut: false,
+        },
         login: {
             errorMsg: undefined,
             formSubmitted: false,

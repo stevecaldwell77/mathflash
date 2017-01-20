@@ -1,5 +1,5 @@
 import { fromJS } from 'immutable';
-import { LOGOUT } from '../../App/constants';
+import { LOGOUT } from '../../App/session/constants';
 import { LOGIN, LOGIN_SUCCESS, LOGIN_ERROR } from './constants';
 
 const initialState = fromJS({

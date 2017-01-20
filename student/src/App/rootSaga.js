@@ -1,25 +1,18 @@
-import { delay } from 'redux-saga';
-import { put, takeLatest } from 'redux-saga/effects';
-import { logoutComplete } from './actions';
-import { LOGOUT } from './constants';
+import { put } from 'redux-saga/effects';
 import { loadStudents } from '../scenes/Login/actions';
+import sessionSaga from './session/saga';
 import loginSaga from '../scenes/Login/saga';
 // import startSceneSaga from '../scenes/Start/saga';
 
-function* logout() {
-    yield delay(1000);
-    yield put(logoutComplete());
-}
-
-function* sessionSaga() {
+function* startupSaga() {
     yield put(loadStudents());
-    yield takeLatest(LOGOUT, logout);
 }
 
 export default function* rootSaga() {
     yield [
+        sessionSaga(),
         loginSaga(),
         // startSceneSaga(),
-        sessionSaga(),
+        startupSaga(),
     ]
 }

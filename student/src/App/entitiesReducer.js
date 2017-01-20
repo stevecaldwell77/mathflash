@@ -1,5 +1,5 @@
 import { fromJS } from 'immutable';
-import { LOGOUT } from './constants';
+import { LOGOUT } from './session/constants';
 import { LOAD_STUDENTS_SUCCESS } from '../scenes/Login/constants';
 
 const initialState = fromJS({

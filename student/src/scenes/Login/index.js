@@ -3,8 +3,8 @@ import {
     getStudents,
     getFormSubmitted,
     getErrorMsg,
-    getLoggingOut,
 } from './selectors';
+import { getLoggingOut } from '../../App/session/selectors';
 import { login } from './actions';
 import Component from './Component';
 
