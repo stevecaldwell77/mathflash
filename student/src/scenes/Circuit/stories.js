@@ -15,7 +15,7 @@ storiesOf('Circuit', module)
         <Component
             onStop={onStop}
             onSkip={onSkip}
-            elapsed={20000}
+            elapsed={33}
             numCompleted={15}
             problem={{
                 firstNumber: '6',
@@ -28,7 +28,7 @@ storiesOf('Circuit', module)
         <Component
             onStop={onStop}
             onSkip={onSkip}
-            elapsed={59000}
+            elapsed={98}
             numCompleted={25}
             problem={{
                 firstNumber: '12',
@@ -41,7 +41,7 @@ storiesOf('Circuit', module)
         <Component
             onStop={onStop}
             onSkip={onSkip}
-            elapsed={45000}
+            elapsed={75}
             numCompleted={20}
             problem={{
                 firstNumber: '2',

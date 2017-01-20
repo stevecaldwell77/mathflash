@@ -5,13 +5,12 @@ import {
     getCurrentProblem,
     getNumCompleted,
     getStartTime,
+    getTickTime,
 } from './selectors';
+import { CIRCUIT_TIME } from './constants';
 import Component from './Component';
 
 const stop = () => {};
-const skip = () => {};
-
-const elapsed = (state, asOf = Date.now()) => asOf - getStartTime(state);
 
 const waiting = state => (
     getStopRequested(state) ||
@@ -19,19 +18,18 @@ const waiting = state => (
     false
 );
 
-export const mapState = (state, options = {}) => {
-    const { asOf } = options;
-    return {
-        elapsed: elapsed(state, asOf),
-        numCompleted: getNumCompleted(state),
-        problem: getCurrentProblem(state),
-        waiting: waiting(state),
-    };
-};
+const elapsed = (start, now) => now && start &&
+    (((now - start) / (CIRCUIT_TIME * 1000)) * 100);
+
+export const mapState = (state) => ({
+    elapsed: elapsed(getStartTime(state), getTickTime(state)),
+    numCompleted: getNumCompleted(state),
+    problem: getCurrentProblem(state),
+    waiting: waiting(state),
+});
 
 const actions = {
     onStop: stop,
-    onSkip: skip,
 };
 
 export default connect(

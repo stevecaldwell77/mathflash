@@ -5,18 +5,18 @@ import TopBar from '../../features/TopBar';
 import Waiting from '../../features/Waiting';
 
 const elapsedColor = elapsed => (
-     elapsed > 55000  ? 'red'
-    : elapsed > 50000 ? 'orange'
-    : elapsed > 40000 ? 'yellow'
-    : elapsed > 30000 ? 'olive'
-                      : 'green'
+     elapsed  > 1 - 6.25 ? 'red'
+    : elapsed > 1 - 12.5 ? 'orange'
+    : elapsed > 1 - 25   ? 'yellow'
+    : elapsed > 1 - 50   ? 'olive'
+                         : 'green'
 );
 
 const StatsRow = ({elapsed, numCompleted}) => (
     <Grid verticalAlign="middle" centered>
         <Grid.Row>
             <Grid.Column width={13}>
-                <Progress size="small" percent={elapsed/60000*100} color={elapsedColor(elapsed)}/>
+                <Progress size="small" percent={elapsed} color={elapsedColor(elapsed)}/>
             </Grid.Column>
             <Grid.Column width={3}>
                 <Statistic color="blue" size="mini">
@@ -58,7 +58,7 @@ const StopButton = ({ onClick }) => (
     />
 );
 
-const Circuit = ({ onStop, onSkip, elapsed, numCompleted, problem, waiting }) => (
+const Circuit = ({ onStop, elapsed, numCompleted, problem, waiting }) => (
     <Container textAlign="center">
         <TopBar />
         <StatsRow elapsed={elapsed} numCompleted={numCompleted} />
@@ -72,7 +72,6 @@ const Circuit = ({ onStop, onSkip, elapsed, numCompleted, problem, waiting }) =>
 
 Circuit.propTypes = {
     onStop: React.PropTypes.func.isRequired,
-    onSkip: React.PropTypes.func.isRequired,
     elapsed: React.PropTypes.number.isRequired,
     numCompleted: React.PropTypes.number.isRequired,
     problem: React.PropTypes.shape({

@@ -10,5 +10,5 @@ it('renders without crashing', () => {
         secondNumber: "6",
         operator: "+",
     };
-    shallow(<Component elapsed={45000} numCompleted={12} onStop={noop} onSkip={noop} problem={problem}/>, div);
+    shallow(<Component elapsed={75} numCompleted={12} onStop={noop} onSkip={noop} problem={problem}/>, div);
 });

@@ -13,6 +13,11 @@ export const getLoadingProblem = createSelector(
     state => state && state.get('loadingProblem'),
 );
 
+export const getTickTime = createSelector(
+    getSceneState,
+    state => state && state.get('tickTime'),
+);
+
 export const getCurrentProblem = createSelector(
     getActiveCircuit,
     circuit => circuit && circuit.get('currentProblem')

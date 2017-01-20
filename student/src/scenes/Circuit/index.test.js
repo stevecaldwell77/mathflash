@@ -1,14 +1,17 @@
 import { fromJS } from 'immutable';
 import { mapState } from './';
+import { CIRCUIT_TIME } from './constants';
+
+const circuitTimeMilli = CIRCUIT_TIME * 1000;
 
 const testCircuits = {
     1: {
-        startTime: 1484770000000,
-        endTime: 1484770060000,
+        startTime: 10000,
+        endTime: 70000,
         numCompleted: 24,
     },
     2: {
-        startTime: 1484770120000,
+        startTime: 100000,
         numCompleted: 12,
         currentProblem: {
             firstNumber: '2',
@@ -24,11 +27,12 @@ test('mapState: showing problem', () => {
             circuits: testCircuits,
         },
         circuit: {
+            tickTime: 100000 + (circuitTimeMilli * 0.25),
         },
     });
-    const result = mapState(state, { asOf: 1484770140000 });
+    const result = mapState(state);
     expect(result).toEqual({
-        elapsed: 20000,
+        elapsed: 25,
         numCompleted: 12,
         problem: {
             firstNumber: '2',
@@ -46,11 +50,12 @@ test('mapState: loading problem', () => {
         },
         circuit: {
             loadingProblem: true,
+            tickTime: 100000 + (circuitTimeMilli * 0.5),
         },
     });
-    const result = mapState(state, { asOf: 1484770145000 });
+    const result = mapState(state);
     expect(result).toEqual({
-        elapsed: 25000,
+        elapsed: 50,
         numCompleted: 12,
         problem: {
             firstNumber: '2',
@@ -68,11 +73,12 @@ test('mapState: stopping', () => {
         },
         circuit: {
             stopRequested: true,
+            tickTime: 100000 + (circuitTimeMilli * 0.75),
         },
     });
-    const result = mapState(state, { asOf: 1484770150000 });
+    const result = mapState(state);
     expect(result).toEqual({
-        elapsed: 30000,
+        elapsed: 75,
         numCompleted: 12,
         problem: {
             firstNumber: '2',
