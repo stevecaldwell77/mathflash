@@ -9,7 +9,6 @@ import { login } from '../../App/session/actions';
 import Component from './Component';
 
 const waiting = state => (
-    (getStudents(state).length === 0) ||
     getFormSubmitted(state) ||
     getLoggingOut(state) ||
     false

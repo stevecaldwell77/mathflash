@@ -10,6 +10,11 @@ export const getStudents = createSelector(
     entities => entities && entities.get('students'),
 );
 
+export const getNumStudents = createSelector(
+    getStudents,
+    students => students.count(),
+);
+
 export const getCircuits = createSelector(
     getEntities,
     entities => entities && entities.get('circuits'),

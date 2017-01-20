@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { fromJS } from 'immutable';
 import { mapState, Component } from './';
+import Waiting from '../features/Waiting';
 import Login from '../scenes/Login';
 import Start from '../scenes/Start';
 import Circuit from '../scenes/Circuit';
@@ -76,5 +77,18 @@ test('mapState: choose login scene', () => {
     const result = mapState(state);
     expect(result).toEqual({
         Scene: Login,
+    });
+});
+
+test('mapState: choose waiting scene', () => {
+    const state = fromJS({
+        entities: {
+            students: {},
+            circuits: {},
+        },
+    });
+    const result = mapState(state);
+    expect(result).toEqual({
+        Scene: Waiting,
     });
 });

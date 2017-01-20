@@ -4,8 +4,8 @@ it('initial state', () => {
     const newState = rootReducer(undefined, {});
     expect(newState.toJS()).toEqual({
         entities: {
-            students: [],
-            circuits: [],
+            students: {},
+            circuits: {},
         },
         session: {
             currentStudentId: undefined,

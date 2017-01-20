@@ -12,17 +12,7 @@ const testStudents = {
     },
 };
 
-test('mapState: empty state', () => {
-    const state = fromJS({});
-    const result = mapState(state);
-    expect(result).toEqual({
-        students: [],
-        waiting: true,
-        errorMsg: undefined,
-    });
-});
-
-test('mapState: students fetched', () => {
+test('mapState: begin', () => {
     const state = fromJS({
         entities: {
             students: testStudents,

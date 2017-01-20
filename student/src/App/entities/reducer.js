@@ -3,8 +3,8 @@ import { LOGOUT } from '../session/constants';
 import { LOAD_STUDENTS_SUCCESS } from './constants';
 
 const initialState = fromJS({
-    students: [],
-    circuits: [],
+    students: {},
+    circuits: {},
 });
 
 const reducer = (state = initialState, action) => {
