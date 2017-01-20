@@ -11,7 +11,7 @@ import Component from './Component';
 const stop = () => {};
 const skip = () => {};
 
-const elapsed = (state, asOf = Date.now) => asOf - getStartTime(state);
+const elapsed = (state, asOf = Date.now()) => asOf - getStartTime(state);
 
 const waiting = state => (
     getStopRequested(state) ||
