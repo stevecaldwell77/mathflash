@@ -1,2 +1,2 @@
-export const START_CIRCUIT = 'App/Start/START';
-export const CIRCUIT_READY = 'App/Start/CIRCUIT_READY';
+export const START_CIRCUIT = 'scenes/Start/START';
+export const CIRCUIT_READY = 'scenes/Start/CIRCUIT_READY';
