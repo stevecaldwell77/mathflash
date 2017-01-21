@@ -18,5 +18,13 @@ it('initial state', () => {
         start: {
             waitingForCircuit: false,
         },
+        circuit: {
+            stopRequested: false,
+            loadingProblem: false,
+            tickTime: undefined,
+            startTime: undefined,
+            numCompleted: undefined,
+            currentProblem: undefined,
+        },
     });
 });
