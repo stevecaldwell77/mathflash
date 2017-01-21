@@ -8,9 +8,8 @@ import {
     getTickTime,
 } from './selectors';
 import { CIRCUIT_TIME } from './constants';
+import { stopCircuit } from './actions';
 import Component from './Component';
-
-const stop = () => {};
 
 const waiting = state => (
     getStopRequested(state) ||
@@ -18,7 +17,7 @@ const waiting = state => (
     false
 );
 
-const elapsed = (start, now) => now && start &&
+const elapsed = (start, now = Date.now()) => now && start &&
     (((now - start) / (CIRCUIT_TIME * 1000)) * 100);
 
 export const mapState = (state) => ({
@@ -29,7 +28,7 @@ export const mapState = (state) => ({
 });
 
 const actions = {
-    onStop: stop,
+    onStop: stopCircuit,
 };
 
 export default connect(
