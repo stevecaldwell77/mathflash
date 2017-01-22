@@ -3,7 +3,6 @@ import {
     NEW_PROBLEM_READY,
     CIRCUIT_TICK,
     STOP_CIRCUIT,
-    CIRCUIT_COMPLETE,
 } from './constants';
 
 export const newProblem = () => ({
@@ -19,10 +18,8 @@ export const circuitTick = () => ({
     type: CIRCUIT_TICK,
 });
 
-export const stopCircuit = () => ({
+export const stopCircuit = (circuitId) => ({
     type: STOP_CIRCUIT,
-});
-
-export const circuitComplete = () => ({
-    type: CIRCUIT_COMPLETE,
+    timestamp: Date.now(),
+    circuitId,
 });

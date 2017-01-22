@@ -8,13 +8,12 @@ stubTopBar();
 const Component = require('./Component').default;
 
 const onStop = action('stop');
-const onSkip = action('next');
 
 storiesOf('Circuit', module)
     .add('circuit', () => (
         <Component
             onStop={onStop}
-            onSkip={onSkip}
+            circuitId={1}
             elapsed={33}
             numCompleted={15}
             problem={{
@@ -27,7 +26,7 @@ storiesOf('Circuit', module)
     .add('circuit nearing end', () => (
         <Component
             onStop={onStop}
-            onSkip={onSkip}
+            circuitId={1}
             elapsed={98}
             numCompleted={25}
             problem={{
@@ -40,7 +39,7 @@ storiesOf('Circuit', module)
     .add('waiting', () => (
         <Component
             onStop={onStop}
-            onSkip={onSkip}
+            circuitId={1}
             elapsed={75}
             numCompleted={20}
             problem={{

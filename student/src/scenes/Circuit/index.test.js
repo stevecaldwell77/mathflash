@@ -6,11 +6,13 @@ const circuitTimeMilli = CIRCUIT_TIME * 1000;
 
 const testCircuits = {
     1: {
+        circuitId: 1,
         startTime: 10000,
         endTime: 70000,
         numCompleted: 24,
     },
     2: {
+        circuitId: 2,
         startTime: 100000,
         numCompleted: 12,
         currentProblem: {
@@ -32,6 +34,7 @@ test('mapState: showing problem', () => {
     });
     const result = mapState(state);
     expect(result).toEqual({
+        circuitId: 2,
         elapsed: 25,
         numCompleted: 12,
         problem: {
@@ -55,6 +58,7 @@ test('mapState: loading problem', () => {
     });
     const result = mapState(state);
     expect(result).toEqual({
+        circuitId: 2,
         elapsed: 50,
         numCompleted: 12,
         problem: {
@@ -78,6 +82,7 @@ test('mapState: stopping', () => {
     });
     const result = mapState(state);
     expect(result).toEqual({
+        circuitId: 2,
         elapsed: 75,
         numCompleted: 12,
         problem: {

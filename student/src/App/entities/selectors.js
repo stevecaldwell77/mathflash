@@ -26,6 +26,9 @@ export const getCurrentStudent = createSelector(
     (studentId, students) => studentId && students && students.get(studentId),
 );
 
+export const getCircuitById = (state, circuitId) =>
+    getCircuits(state).get(circuitId);
+
 export const getActiveCircuit = createSelector(
     getCircuits,
     circuits => circuits && fromJS(

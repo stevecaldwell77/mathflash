@@ -18,6 +18,11 @@ export const getTickTime = createSelector(
     state => state && state.get('tickTime'),
 );
 
+export const getCircuitId = createSelector(
+    getActiveCircuit,
+    circuit => circuit && circuit.get('circuitId'),
+);
+
 export const getCurrentProblem = createSelector(
     getActiveCircuit,
     circuit => circuit && circuit.get('currentProblem')

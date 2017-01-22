@@ -1,6 +1,6 @@
 import { fromJS } from 'immutable';
 import { LOGOUT } from '../session/constants';
-import { LOAD_STUDENTS_SUCCESS } from './constants';
+import { LOAD_STUDENTS_SUCCESS, CIRCUIT_CLOSED } from './constants';
 import { CIRCUIT_READY } from '../../scenes/Start/constants';
 
 const initialState = fromJS({
@@ -19,7 +19,13 @@ const reducer = (state = initialState, action) => {
         case CIRCUIT_READY:
             return state
                 .setIn(
-                    ['circuits', action.circuit.circuitId],
+                    ['circuits', action.circuit.get('circuitId')],
+                    action.circuit,
+                );
+        case CIRCUIT_CLOSED:
+            return state
+                .setIn(
+                    ['circuits', action.circuit.get('circuitId')],
                     action.circuit,
                 );
         default:

@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import {
     getStopRequested,
     getLoadingProblem,
+    getCircuitId,
     getCurrentProblem,
     getNumCompleted,
     getStartTime,
@@ -21,6 +22,7 @@ const elapsed = (start, now = Date.now()) => now && start &&
     (((now - start) / (CIRCUIT_TIME * 1000)) * 100);
 
 export const mapState = (state) => ({
+    circuitId: getCircuitId(state),
     elapsed: elapsed(getStartTime(state), getTickTime(state)),
     numCompleted: getNumCompleted(state),
     problem: getCurrentProblem(state),

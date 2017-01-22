@@ -11,25 +11,24 @@ import {
 import {
     circuitTick,
     stopCircuit,
-    circuitComplete,
 } from './actions';
 
 function* runTicker(circuit) {
-    const { startTime } = circuit;
+    const { startTime, circuitId } = circuit.toJS();
     const endTime = startTime + (CIRCUIT_TIME * 1000);
     while (true) {
         const winner = yield race({
-            complete: take([
+            finished: take([
                 STOP_CIRCUIT,
                 LOGOUT,
             ]),
             tick: call(delay, 250),
         });
-        if (winner.complete) {
+        if (winner.finished) {
             break;
         }
         if (Date.now() > endTime) {
-            yield put(stopCircuit());
+            yield put(stopCircuit(circuitId));
             break;
         }
         yield put(circuitTick());
@@ -40,14 +39,8 @@ function* beginCircuit({ circuit }) {
     yield runTicker(circuit);
 }
 
-function* endCircuit() {
-    yield delay(1000);
-    yield put(circuitComplete());
-}
-
 export default function* saga() {
     yield [
         takeLatest(CIRCUIT_READY, beginCircuit),
-        takeLatest(STOP_CIRCUIT, endCircuit),
     ];
 }

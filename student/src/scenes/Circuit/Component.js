@@ -58,20 +58,21 @@ const StopButton = ({ onClick }) => (
     />
 );
 
-const Circuit = ({ onStop, elapsed, numCompleted, problem, waiting }) => (
+const Circuit = ({ onStop, circuitId, elapsed, numCompleted, problem, waiting }) => (
     <Container textAlign="center">
         <TopBar />
         <StatsRow elapsed={elapsed} numCompleted={numCompleted} />
         <Divider />
         <Problem problem={problem} />
         <Divider />
-        <StopButton onClick={onStop} />
+        <StopButton onClick={() => onStop(circuitId)} />
         {waiting && <Waiting />}
     </Container>
 );
 
 Circuit.propTypes = {
     onStop: React.PropTypes.func.isRequired,
+    circuitId: React.PropTypes.number.isRequired,
     elapsed: React.PropTypes.number.isRequired,
     numCompleted: React.PropTypes.number.isRequired,
     problem: React.PropTypes.shape({

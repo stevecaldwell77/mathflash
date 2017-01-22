@@ -1,12 +1,15 @@
 import { delay } from 'redux-saga';
-import { put, takeLatest } from 'redux-saga/effects';
+import { put, takeLatest, select } from 'redux-saga/effects';
 import {
     LOAD_STUDENTS,
 } from './constants';
 import {
     loadStudents,
     loadStudentsSuccess,
+    circuitClosed,
 } from './actions';
+import { getCircuitById } from './selectors';
+import { STOP_CIRCUIT } from '../../scenes/Circuit/constants';
 
 const students = {
     '1': {
@@ -33,9 +36,22 @@ function* startup() {
     yield put(loadStudents());
 }
 
+function* closeCircuit(action) {
+    const { circuitId, timestamp } = action;
+    yield delay(1000);
+
+    // NOTE: we're only using selector in leiu of getting data from API
+    const existingCircuit = yield select(getCircuitById, circuitId);
+
+    const updatedCircuit = existingCircuit
+        .set('endTime', timestamp);
+    yield put(circuitClosed(updatedCircuit));
+}
+
 export default function* saga() {
     yield [
         startup(),
         takeLatest(LOAD_STUDENTS, fetchStudents),
+        takeLatest(STOP_CIRCUIT, closeCircuit),
     ];
 }

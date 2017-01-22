@@ -1,11 +1,11 @@
 import { fromJS } from 'immutable';
 import { LOGOUT } from '../../App/session/constants';
+import { CIRCUIT_READY } from '../Start/constants';
 import {
     NEW_PROBLEM,
     NEW_PROBLEM_READY,
     CIRCUIT_TICK,
     STOP_CIRCUIT,
-    CIRCUIT_COMPLETE,
 } from './constants';
 
 const initialState = fromJS({
@@ -19,6 +19,8 @@ const initialState = fromJS({
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
+        case CIRCUIT_READY:
+            return initialState;
         case NEW_PROBLEM:
             return state
                 .set('loadingProblem', true);
@@ -32,8 +34,6 @@ const reducer = (state = initialState, action) => {
         case STOP_CIRCUIT:
             return state
                 .set('stopRequested', true);
-        case CIRCUIT_COMPLETE:
-            return initialState;
         case LOGOUT:
             return initialState;
         default:
