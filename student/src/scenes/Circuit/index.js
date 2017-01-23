@@ -7,8 +7,8 @@ import {
     getNumCompleted,
     getStartTime,
     getTickTime,
+    getElapsed,
 } from './selectors';
-import { CIRCUIT_TIME } from './constants';
 import { stopCircuit } from './actions';
 import Component from './Component';
 
@@ -18,12 +18,9 @@ const waiting = state => (
     false
 );
 
-const elapsed = (start, now = Date.now()) => now && start &&
-    (((now - start) / (CIRCUIT_TIME * 1000)) * 100);
-
 export const mapState = (state) => ({
     circuitId: getCircuitId(state),
-    elapsed: elapsed(getStartTime(state), getTickTime(state)),
+    elapsed: getElapsed(state),
     numCompleted: getNumCompleted(state),
     problem: getCurrentProblem(state),
     waiting: waiting(state),
