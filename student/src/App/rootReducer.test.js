@@ -21,10 +21,11 @@ it('initial state', () => {
         circuit: {
             stopRequested: false,
             loadingProblem: false,
-            tickTime: undefined,
-            startTime: undefined,
             numCompleted: undefined,
             currentProblem: undefined,
+            timer: {
+                tickTime: undefined,
+            }
         },
     });
 });

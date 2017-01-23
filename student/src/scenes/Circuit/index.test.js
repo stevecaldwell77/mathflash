@@ -29,13 +29,11 @@ test('mapState: showing problem', () => {
             circuits: testCircuits,
         },
         circuit: {
-            tickTime: 100000 + (circuitTimeMilli * 0.25),
         },
     });
     const result = mapState(state);
     expect(result).toEqual({
         circuitId: 2,
-        elapsed: 25,
         numCompleted: 12,
         problem: {
             firstNumber: '2',
@@ -53,13 +51,11 @@ test('mapState: loading problem', () => {
         },
         circuit: {
             loadingProblem: true,
-            tickTime: 100000 + (circuitTimeMilli * 0.5),
         },
     });
     const result = mapState(state);
     expect(result).toEqual({
         circuitId: 2,
-        elapsed: 50,
         numCompleted: 12,
         problem: {
             firstNumber: '2',
@@ -77,13 +73,11 @@ test('mapState: stopping', () => {
         },
         circuit: {
             stopRequested: true,
-            tickTime: 100000 + (circuitTimeMilli * 0.75),
         },
     });
     const result = mapState(state);
     expect(result).toEqual({
         circuitId: 2,
-        elapsed: 75,
         numCompleted: 12,
         problem: {
             firstNumber: '2',

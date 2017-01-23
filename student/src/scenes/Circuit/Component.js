@@ -1,22 +1,15 @@
 import React from 'react';
-import { Container, Grid, Divider, Progress, Statistic, Header, Button } from "semantic-ui-react";
+import { Container, Grid, Divider, Statistic, Header, Button } from "semantic-ui-react";
 
 import TopBar from '../../features/TopBar';
 import Waiting from '../../features/Waiting';
+import Timer from './Timer';
 
-const elapsedColor = elapsed => (
-     elapsed  > 100 - 6.25 ? 'red'
-    : elapsed > 100 - 12.5 ? 'orange'
-    : elapsed > 100 - 25   ? 'yellow'
-    : elapsed > 100 - 50   ? 'olive'
-                           : 'green'
-);
-
-const StatsRow = ({elapsed, numCompleted}) => (
+const StatsRow = ({numCompleted}) => (
     <Grid verticalAlign="middle" centered>
         <Grid.Row>
             <Grid.Column width={13}>
-                <Progress size="small" percent={elapsed} color={elapsedColor(elapsed)}/>
+                <Timer />
             </Grid.Column>
             <Grid.Column width={3}>
                 <Statistic color="blue" size="mini">
@@ -58,10 +51,10 @@ const StopButton = ({ onClick }) => (
     />
 );
 
-const Circuit = ({ onStop, circuitId, elapsed, numCompleted, problem, waiting }) => (
+const Circuit = ({ onStop, circuitId, numCompleted, problem, waiting }) => (
     <Container textAlign="center">
         <TopBar />
-        <StatsRow elapsed={elapsed} numCompleted={numCompleted} />
+        <StatsRow numCompleted={numCompleted} />
         <Divider />
         <Problem problem={problem} />
         <Divider />
@@ -73,7 +66,6 @@ const Circuit = ({ onStop, circuitId, elapsed, numCompleted, problem, waiting })
 Circuit.propTypes = {
     onStop: React.PropTypes.func.isRequired,
     circuitId: React.PropTypes.number.isRequired,
-    elapsed: React.PropTypes.number.isRequired,
     numCompleted: React.PropTypes.number.isRequired,
     problem: React.PropTypes.shape({
         firstNumber: React.PropTypes.oneOfType([

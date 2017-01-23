@@ -5,9 +5,6 @@ import {
     getCircuitId,
     getCurrentProblem,
     getNumCompleted,
-    getStartTime,
-    getTickTime,
-    getElapsed,
 } from './selectors';
 import { stopCircuit } from './actions';
 import Component from './Component';
@@ -20,7 +17,6 @@ const waiting = state => (
 
 export const mapState = (state) => ({
     circuitId: getCircuitId(state),
-    elapsed: getElapsed(state),
     numCompleted: getNumCompleted(state),
     problem: getCurrentProblem(state),
     waiting: waiting(state),

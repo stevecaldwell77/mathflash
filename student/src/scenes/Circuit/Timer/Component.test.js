@@ -5,10 +5,5 @@ import Component from './Component';
 
 it('renders without crashing', () => {
     const div = document.createElement('div');
-    const problem = {
-        firstNumber: "5",
-        secondNumber: "6",
-        operator: "+",
-    };
-    shallow(<Component circuitId={1} numCompleted={12} onStop={noop} problem={problem}/>, div);
+    shallow(<Component elapsed={25} />, div);
 });

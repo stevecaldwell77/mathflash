@@ -1,6 +1,5 @@
 import { createSelector } from 'reselect';
 import { getActiveCircuit } from '../../App/entities/selectors';
-import { CIRCUIT_TIME } from './constants';
 
 const getSceneState = state => state.get('circuit');
 
@@ -12,11 +11,6 @@ export const getStopRequested = createSelector(
 export const getLoadingProblem = createSelector(
     getSceneState,
     state => state && state.get('loadingProblem'),
-);
-
-export const getTickTime = createSelector(
-    getSceneState,
-    state => state && state.get('tickTime'),
 );
 
 export const getCircuitId = createSelector(
@@ -34,14 +28,3 @@ export const getNumCompleted = createSelector(
     getActiveCircuit,
     circuit => circuit && circuit.get('numCompleted'),
 );
-
-export const getStartTime = createSelector(
-    getActiveCircuit,
-    circuit => circuit && circuit.get('startTime'),
-);
-
-export const getElapsed = (state) => {
-    const start = getStartTime(state);
-    const asOf = getTickTime(state) || Date.now();
-    return start && (((asOf - start) / (CIRCUIT_TIME * 1000)) * 100);
-}

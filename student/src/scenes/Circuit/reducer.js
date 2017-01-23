@@ -4,20 +4,19 @@ import { CIRCUIT_READY } from '../Start/constants';
 import {
     NEW_PROBLEM,
     NEW_PROBLEM_READY,
-    CIRCUIT_TICK,
     STOP_CIRCUIT,
 } from './constants';
+import timerReducer from './Timer/reducer';
 
 const initialState = fromJS({
     stopRequested: false,
     loadingProblem: false,
-    tickTime: undefined,
-    startTime: undefined,
     numCompleted: undefined,
     currentProblem: undefined,
+    timer: undefined,
 });
 
-const reducer = (state = initialState, action) => {
+const mainReducer = (state, action) => {
     switch (action.type) {
         case CIRCUIT_READY:
             return initialState;
@@ -28,9 +27,6 @@ const reducer = (state = initialState, action) => {
             return state
                 .set('loadingProblem', false)
                 .set('currentProblem', fromJS(action.problem));
-        case CIRCUIT_TICK:
-            return state
-                .set('tickTime', Date.now())
         case STOP_CIRCUIT:
             return state
                 .set('stopRequested', true);
@@ -40,5 +36,9 @@ const reducer = (state = initialState, action) => {
             return state;
     }
 }
+
+const reducer = (state = initialState, action) =>
+    mainReducer(state, action)
+        .set('timer', timerReducer(state.get('timer'), action));
 
 export default reducer;
