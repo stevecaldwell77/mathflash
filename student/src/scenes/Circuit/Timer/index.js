@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { mayBeStubbed } from 'react-stubber';
 import {
     getElapsed,
 } from './selectors';
@@ -8,6 +9,8 @@ export const mapState = (state) => ({
     elapsed: getElapsed(state),
 });
 
-export default connect(
-    mapState,
-)(Component);
+export default mayBeStubbed(
+    connect(
+        mapState,
+    )(Component)
+);
