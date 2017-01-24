@@ -1,6 +1,6 @@
 import { fromJS } from 'immutable';
 import { mapState } from './';
-import { CIRCUIT_TIME } from '../constants';
+import { CIRCUIT_TIME } from './constants';
 
 const circuitTimeMilli = CIRCUIT_TIME * 1000;
 

@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 import { getActiveCircuit } from '../../../App/entities/selectors';
-import { CIRCUIT_TIME } from '../constants';
+import { CIRCUIT_TIME } from './constants';
 
 const getTimerState = state => state.getIn(['circuit', 'timer']);
 
