@@ -1,9 +1,7 @@
 import { fromJS } from 'immutable';
 import { LOGOUT } from '../../App/session/constants';
-import {
-    START_CIRCUIT,
-    CIRCUIT_READY,
-} from './constants';
+import { CIRCUIT_READY } from '../../App/entities/constants';
+import { START_CIRCUIT } from './constants';
 
 const initialState = fromJS({
     waitingForCircuit: false,

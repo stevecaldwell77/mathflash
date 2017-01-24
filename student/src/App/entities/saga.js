@@ -1,15 +1,19 @@
 import { delay } from 'redux-saga';
 import { put, takeLatest, select } from 'redux-saga/effects';
+import { fromJS } from 'immutable';
 import {
     LOAD_STUDENTS,
 } from './constants';
+import { START_CIRCUIT } from '../../scenes/Start/constants';
 import {
     loadStudents,
     loadStudentsSuccess,
+    circuitReady,
     circuitClosed,
 } from './actions';
 import { getCircuitById } from './selectors';
 import { STOP_CIRCUIT } from '../../scenes/Circuit/constants';
+import { getRandomInt } from '../../util/math';
 
 const students = {
     '1': {
@@ -26,6 +30,17 @@ const students = {
     },
 };
 
+const newCircuit = () => (fromJS({
+    circuitId: getRandomInt(1, 100000),
+    startTime: Date.now(),
+    numCompleted: 0,
+    currentProblem: {
+        firstNumber: getRandomInt(0, 9),
+        secondNumber: getRandomInt(0, 9),
+        operator: '+',
+    },
+}));
+
 function* fetchStudents(action) {
     yield delay(1000);
     yield put(loadStudentsSuccess(students));
@@ -34,6 +49,11 @@ function* fetchStudents(action) {
 function* startup() {
     yield delay(100);
     yield put(loadStudents());
+}
+
+function* fetchCircuit() {
+    yield delay(1000);
+    yield put(circuitReady(newCircuit()));
 }
 
 function* closeCircuit(action) {
@@ -52,6 +72,7 @@ export default function* saga() {
     yield [
         startup(),
         takeLatest(LOAD_STUDENTS, fetchStudents),
+        takeLatest(START_CIRCUIT, fetchCircuit),
         takeLatest(STOP_CIRCUIT, closeCircuit),
     ];
 }

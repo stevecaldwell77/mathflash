@@ -1,6 +1,6 @@
 import { fromJS } from 'immutable';
 import { LOGOUT } from '../../App/session/constants';
-import { CIRCUIT_READY } from '../Start/constants';
+import { CIRCUIT_READY } from '../../App/entities/constants';
 import {
     NEW_PROBLEM,
     NEW_PROBLEM_READY,
