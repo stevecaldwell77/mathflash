@@ -2,8 +2,8 @@ import { delay } from 'redux-saga';
 import { race, take, call, put, takeLatest } from 'redux-saga/effects';
 import { CIRCUIT_READY } from '../../../App/entities/constants';
 import { LOGOUT } from '../../../App/session/constants';
-import { STOP_CIRCUIT } '../constants';
-import { CIRCUIT_TIME } './constants';
+import { STOP_CIRCUIT } from '../constants';
+import { CIRCUIT_TIME } from './constants';
 import { stopCircuit } from '../actions';
 import { circuitTick } from './actions';
 
